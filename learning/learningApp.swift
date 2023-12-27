@@ -26,6 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             userData.timeString = storedTime
         } else {
             print("No time data found in UserDefaults during app launch.")
+            os_log("No time data found in UserDefaults during app launch.", log: log, type: .default)
         }
 
         if let storedLargeData = UserDefaults.standard.string(forKey: "largedataString") {
@@ -34,6 +35,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             userData.largeDataString = storedLargeData
         } else {
             print("No large data found in UserDefaults during app launch.")
+            os_log("No large data found in UserDefaults during app launch.", log: log, type: .default)
         }
 
         return true
@@ -42,6 +44,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct learningApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             ContentView()
