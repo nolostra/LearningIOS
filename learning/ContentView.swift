@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var userData: UserData
+    @ObservedObject var userData: UserData
     @State private var lastStoredTimeTextField = ""
     @State private var lastStoredTextField2 = ""
     var body: some View {
@@ -60,6 +60,16 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(userData: UserData.sample)
+    }
+}
+
+extension UserData {
+    static var sample: UserData {
+        let sampleData = UserData.shared
+        // Set any sample data you want for preview here
+        sampleData.timeString = "Sample Time"
+        sampleData.largeDataString = "Sample Large Data"
+        return sampleData
     }
 }

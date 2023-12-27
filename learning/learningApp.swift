@@ -22,7 +22,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         os_log("application Delegate called", log: log, type: .default)
         // Fetch data from UserDefaults during app launch
-        if let storedTime = UserDefaults.standard.string(forKey: "timeString") {
+        if let storedTime = UserDefaults.standard.string(forKey: "dataString") {
             print("Retrieved time from UserDefaults in didFinishLaunchingWithOptions: \(storedTime)")
             os_log("Retrieved time from UserDefaults in didFinishLaunchingWithOptions:  %{public}@", log: log, type: .default,"\(storedTime)")
             userData.timeString = storedTime
@@ -49,8 +49,8 @@ struct learningApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(UserData.shared)
+            ContentView(userData: appDelegate.userData)
+//                .environmentObject(UserData.shared)
         }
     }
 }
