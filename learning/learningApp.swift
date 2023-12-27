@@ -19,6 +19,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     @ObservedObject var userData: UserData = .shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        
+        os_log("application Delegate called", log: log, type: .default)
         // Fetch data from UserDefaults during app launch
         if let storedTime = UserDefaults.standard.string(forKey: "timeString") {
             print("Retrieved time from UserDefaults in didFinishLaunchingWithOptions: \(storedTime)")
